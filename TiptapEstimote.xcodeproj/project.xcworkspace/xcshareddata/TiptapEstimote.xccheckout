@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>95231EC3-459D-4B42-85FC-CD0B4693763F</string>
+	<string>BAE3F8A0-B70B-4088-9763-C548E2640FD3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TiptapEstimote</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5BD5C060F3D7ADED064E9C74CCF2BC305E4CE11A</key>
-		<string>github.com:shumipro/tiptap-estimote.git</string>
+		<string>https://github.com/shumipro/tiptap-estimote</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TiptapEstimote.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:shumipro/tiptap-estimote.git</string>
+	<string>https://github.com/shumipro/tiptap-estimote</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>5BD5C060F3D7ADED064E9C74CCF2BC305E4CE11A</string>
 			<key>IDESourceControlWCCName</key>
-			<string>tiptap-estimote</string>
+			<string>battle-hack</string>
 		</dict>
 	</array>
 </dict>

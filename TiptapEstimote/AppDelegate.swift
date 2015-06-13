@@ -10,13 +10,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
     var window: UIWindow?
     let beaconManager = ESTBeaconManager()
-
+    var viewController: ViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let viewController: ViewController = ViewController()
+        self.viewController = ViewController()
         window!.rootViewController = viewController
         window!.makeKeyAndVisible()
 
@@ -54,6 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        if let fullPath = url.absoluteString {
+            // tiptap:// -> 9
+            var redirectURL = (fullPath as NSString).substringFromIndex(9)
+            println("custom scheme redirect: " + redirectURL)
+            self.viewController?.loadWebView(redirectURL)
+            
+        }
+        return true
     }
 
 

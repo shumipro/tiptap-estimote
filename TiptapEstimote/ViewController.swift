@@ -130,5 +130,12 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
         return true
     }
 
+    func webViewDidStartLoad(webView: UIWebView) {
+//        self.view.makeToastActivity()
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+//          self.view.hideToastActivity()
+    }
 }
 

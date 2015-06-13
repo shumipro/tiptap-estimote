@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002AC7C81B2C5CCF001138CA /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002AC7C71B2C5CCF001138CA /* LoadingIndicator.swift */; };
 		AECF16301B0DE4DE00CC83B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF162F1B0DE4DE00CC83B2 /* AppDelegate.swift */; };
 		AECF16321B0DE4DE00CC83B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF16311B0DE4DE00CC83B2 /* ViewController.swift */; };
 		AECF16371B0DE4DE00CC83B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECF16361B0DE4DE00CC83B2 /* Images.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002AC7C71B2C5CCF001138CA /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		AECF162A1B0DE4DE00CC83B2 /* TiptapEstimote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiptapEstimote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECF162E1B0DE4DE00CC83B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECF162F1B0DE4DE00CC83B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				AECF16361B0DE4DE00CC83B2 /* Images.xcassets */,
 				AECF16381B0DE4DE00CC83B2 /* LaunchScreen.xib */,
 				AECF162D1B0DE4DE00CC83B2 /* Supporting Files */,
+				002AC7C71B2C5CCF001138CA /* LoadingIndicator.swift */,
 			);
 			path = TiptapEstimote;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002AC7C81B2C5CCF001138CA /* LoadingIndicator.swift in Sources */,
 				AECF16321B0DE4DE00CC83B2 /* ViewController.swift in Sources */,
 				AECF16301B0DE4DE00CC83B2 /* AppDelegate.swift in Sources */,
 			);
