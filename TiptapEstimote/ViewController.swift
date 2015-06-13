@@ -50,7 +50,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
         self.view.addSubview(self.webView)
         
         // set default page
-        self.openWebView(self.URL_NO_BEACON)
+        self.loadWebView(self.URL_NO_BEACON)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -76,14 +76,14 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
             if isBeacon(neareastBeacon, withUUID: BEACON_1_UUID, major: BEACON_1_MAJOR, minor: BEACON_1_MINOR) {
                 // move to webview
                 if !self.beaconActive {
-                    self.openWebView(self.URL_ACTIVE_BEACON + "&major=" + String(BEACON_1_MAJOR) + "&minor=" + String(BEACON_1_MINOR))
+                    self.loadWebView(self.URL_ACTIVE_BEACON + "&major=" + String(BEACON_1_MAJOR) + "&minor=" + String(BEACON_1_MINOR))
                     self.beaconActive = true
                 }
             }
         } else {
             // no beacons found, show error page
             if self.beaconActive {
-                self.openWebView(self.URL_NO_BEACON)
+                self.loadWebView(self.URL_NO_BEACON)
                 self.beaconActive = false
             }
         }
@@ -99,7 +99,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
         NSLog("Ranging beacons failed for region '%@'\n\nMake sure that Bluetooth and Location Services are on, and that Location Services are allowed for this app. Also note that iOS simulator doesn't support Bluetooth.\n\nThe error was: %@", region.identifier, error);
     }
     
-    func openWebView(url: String){
+    func loadWebView(url: String){
         let requestURL: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
         self.currentURL = url
         self.webView.loadRequest(requestURL)
@@ -114,7 +114,21 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-
+    
+    func openSafari(url: NSURL) {
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.LinkClicked {
+            println(request.URL?.host)
+            if request.URL?.host! == "www.sandbox.paypal.com" {
+                self.openSafari(request.URL!)
+                return false
+            }
+        }
+        return true
+    }
 
 }
 

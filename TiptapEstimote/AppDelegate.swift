@@ -13,14 +13,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert, categories: nil))
+        let viewController: ViewController = ViewController()
+        window!.rootViewController = viewController
+        window!.makeKeyAndVisible()
+
+        // estimote setup
+        ESTCloudManager.setupAppID("tiptap-estimote", andAppToken: "deb74379a8a4da9e5112749b5a5fdcf0")
         
-        beaconManager.delegate = self
-        beaconManager.requestAlwaysAuthorization()
-        
-        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D"), major: 42051, minor: 29428, identifier: "blue beacon")
-        beaconManager.startMonitoringForRegion(region)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert, categories: nil))
+//        
+//        beaconManager.delegate = self
+//        beaconManager.requestAlwaysAuthorization()
+//        
+//        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D"), major: 42051, minor: 29428, identifier: "blue beacon")
+//        beaconManager.startMonitoringForRegion(region)
         
         return true
     }
