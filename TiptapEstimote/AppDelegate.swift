@@ -6,15 +6,22 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
 
     var window: UIWindow?
+    let beaconManager = ESTBeaconManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        ESTCloudManager.setupAppID("tiptap-estimote", andAppToken: "deb74379a8a4da9e5112749b5a5fdcf0")
-
-        // Override point for customization after application launch.
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert, categories: nil))
+        
+        beaconManager.delegate = self
+        beaconManager.requestAlwaysAuthorization()
+        
+        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D"), major: 42051, minor: 29428, identifier: "blue beacon")
+        beaconManager.startMonitoringForRegion(region)
+        
         return true
     }
 
