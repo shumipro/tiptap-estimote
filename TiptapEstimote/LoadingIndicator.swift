@@ -28,8 +28,8 @@ let HRToastPositionTop      =   "top"
 let HRToastPositionCenter   =   "center"
 
 // activity
-let HRToastActivityWidth  :  CGFloat  = 100.0
-let HRToastActivityHeight :  CGFloat  = 100.0
+let HRToastActivityWidth  :  CGFloat  = 80.0
+let HRToastActivityHeight :  CGFloat  = 80.0
 let HRToastActivityPositionDefault    = "center"
 
 // image size
@@ -143,8 +143,8 @@ extension UIView {
         
         var activityView = UIView(frame: CGRectMake(0, 0, HRToastActivityWidth, HRToastActivityHeight))
         activityView.center = self.centerPointForPosition(pos, toast: activityView)
-        activityView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(HRToastOpacity)
-        activityView.alpha = 1.0
+        activityView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(HRToastOpacity)
+        activityView.alpha = 0.1
         activityView.autoresizingMask = (.FlexibleLeftMargin | .FlexibleTopMargin | .FlexibleRightMargin | .FlexibleBottomMargin)
         activityView.layer.cornerRadius = HRToastCornerRadius
         
@@ -265,7 +265,7 @@ extension UIView {
         var wrapperView = UIView()
         wrapperView.autoresizingMask = (.FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin)
         wrapperView.layer.cornerRadius = HRToastCornerRadius
-        wrapperView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(HRToastOpacity)
+        wrapperView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(HRToastOpacity)
         
         if HRToastDisplayShadow {
             wrapperView.layer.shadowColor = UIColor.blackColor().CGColor

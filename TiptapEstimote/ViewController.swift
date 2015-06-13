@@ -32,8 +32,8 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
     var currentURL:String = ""
     
     // constants
-    var URL_NO_BEACON: String = URL_BASE + "#top"
-    var URL_ACTIVE_BEACON: String = URL_BASE + "#top?isPerformer=true"
+    var URL_NO_BEACON: String = URL_BASE
+    var URL_ACTIVE_BEACON: String = URL_BASE + "#/?isPerformer=true"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,11 +131,11 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
     }
 
     func webViewDidStartLoad(webView: UIWebView) {
-//        self.view.makeToastActivity()
+        self.view.makeToastActivity()
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-//          self.view.hideToastActivity()
+          self.view.hideToastActivity()
     }
 }
 
