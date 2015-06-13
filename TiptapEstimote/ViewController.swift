@@ -32,12 +32,9 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
     var currentURL:String = ""
     
     // constants
-    let URL_NO_BEACON: String = URL_BASE + "error?isWatching=true"
-    let URL_ACTIVE_BEACON: String = URL_BASE + "?isWatching=true"
+    var URL_NO_BEACON: String = URL_BASE + "#top"
+    var URL_ACTIVE_BEACON: String = URL_BASE + "#top?isPerformer=true"
     
-//    @IBOutlet weak var label: UILabel!
-//    @IBOutlet weak var imageView: UIImageView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,8 +67,8 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
 
     func beaconManager(manager: AnyObject!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         if let currentURL = self.webView.request?.URL?.absoluteString {
-            if currentURL != "" && currentURL.rangeOfString("isWatching=true") == nil {
-                println("break watching currentURL: " + currentURL)
+            if currentURL != "" && currentURL.rangeOfString("#top") == nil {
+//                println("break watching currentURL: " + currentURL)
                 return
             }
         }
@@ -79,7 +76,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
             if isBeacon(neareastBeacon, withUUID: BEACON_1_UUID, major: BEACON_1_MAJOR, minor: BEACON_1_MINOR) {
                 // move to webview
                 if !self.beaconActive {
-                    self.openWebView(self.URL_ACTIVE_BEACON)
+                    self.openWebView(self.URL_ACTIVE_BEACON + "&major=" + String(BEACON_1_MAJOR) + "&minor=" + String(BEACON_1_MINOR))
                     self.beaconActive = true
                 }
             }
@@ -106,6 +103,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
         let requestURL: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
         self.currentURL = url
         self.webView.loadRequest(requestURL)
+        println("load: " + url)
     }
     
     override func didReceiveMemoryWarning() {
