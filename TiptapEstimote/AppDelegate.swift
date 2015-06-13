@@ -12,6 +12,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let viewController: ViewController = ViewController()
+        window!.rootViewController = viewController
+        window!.makeKeyAndVisible()
+
+        
         ESTCloudManager.setupAppID("tiptap-estimote", andAppToken: "deb74379a8a4da9e5112749b5a5fdcf0")
 
         // Override point for customization after application launch.

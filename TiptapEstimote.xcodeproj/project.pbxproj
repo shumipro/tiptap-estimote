@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AECF16301B0DE4DE00CC83B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF162F1B0DE4DE00CC83B2 /* AppDelegate.swift */; };
 		AECF16321B0DE4DE00CC83B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF16311B0DE4DE00CC83B2 /* ViewController.swift */; };
-		AECF16351B0DE4DE00CC83B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECF16331B0DE4DE00CC83B2 /* Main.storyboard */; };
 		AECF16371B0DE4DE00CC83B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECF16361B0DE4DE00CC83B2 /* Images.xcassets */; };
 		AECF163A1B0DE4DE00CC83B2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AECF16381B0DE4DE00CC83B2 /* LaunchScreen.xib */; };
 		AECF16461B0DE4DE00CC83B2 /* TiptapEstimoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF16451B0DE4DE00CC83B2 /* TiptapEstimoteTests.swift */; };
@@ -31,7 +30,6 @@
 		AECF162E1B0DE4DE00CC83B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECF162F1B0DE4DE00CC83B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AECF16311B0DE4DE00CC83B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AECF16341B0DE4DE00CC83B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AECF16361B0DE4DE00CC83B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AECF16391B0DE4DE00CC83B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AECF163F1B0DE4DE00CC83B2 /* TiptapEstimoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TiptapEstimoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +82,6 @@
 			children = (
 				AECF162F1B0DE4DE00CC83B2 /* AppDelegate.swift */,
 				AECF16311B0DE4DE00CC83B2 /* ViewController.swift */,
-				AECF16331B0DE4DE00CC83B2 /* Main.storyboard */,
 				AECF16361B0DE4DE00CC83B2 /* Images.xcassets */,
 				AECF16381B0DE4DE00CC83B2 /* LaunchScreen.xib */,
 				AECF162D1B0DE4DE00CC83B2 /* Supporting Files */,
@@ -198,7 +195,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AECF16351B0DE4DE00CC83B2 /* Main.storyboard in Resources */,
 				AECF163A1B0DE4DE00CC83B2 /* LaunchScreen.xib in Resources */,
 				AECF16371B0DE4DE00CC83B2 /* Images.xcassets in Resources */,
 			);
@@ -242,14 +238,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AECF16331B0DE4DE00CC83B2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AECF16341B0DE4DE00CC83B2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AECF16381B0DE4DE00CC83B2 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -427,6 +415,7 @@
 				AECF164B1B0DE4DE00CC83B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AECF164C1B0DE4DE00CC83B2 /* Build configuration list for PBXNativeTarget "TiptapEstimoteTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +424,7 @@
 				AECF164E1B0DE4DE00CC83B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
