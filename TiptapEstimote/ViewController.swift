@@ -76,7 +76,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
             if isBeacon(neareastBeacon, withUUID: BEACON_1_UUID, major: BEACON_1_MAJOR, minor: BEACON_1_MINOR) {
                 // move to webview
                 if !self.beaconActive {
-                    self.loadWebView(self.URL_ACTIVE_BEACON + "&major=" + String(BEACON_1_MAJOR) + "&minor=" + String(BEACON_1_MINOR))
+                    self.loadWebView(self.URL_ACTIVE_BEACON + "&major_id=" + String(BEACON_1_MAJOR) + "&minor_id=" + String(BEACON_1_MINOR))
                     self.beaconActive = true
                 }
             }
