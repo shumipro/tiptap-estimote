@@ -9,62 +9,83 @@ let BEACON_1_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
 let BEACON_1_MAJOR: CLBeaconMajorValue = 42051
 let BEACON_1_MINOR: CLBeaconMinorValue = 29428
 
-let BEACON_2_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-let BEACON_2_MAJOR: CLBeaconMajorValue = 52557
-let BEACON_2_MINOR: CLBeaconMinorValue = 31007
+//let BEACON_2_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+//let BEACON_2_MAJOR: CLBeaconMajorValue = 52557
+//let BEACON_2_MINOR: CLBeaconMinorValue = 31007
+
+let URL_BASE: String = "https://bigtiptap-battlehack.herokuapp.com/"
+
 
 func isBeacon(beacon: CLBeacon, withUUID UUIDString: String, #major: CLBeaconMajorValue, #minor: CLBeaconMinorValue) -> Bool {
     return beacon.proximityUUID.UUIDString == UUIDString && beacon.major.unsignedShortValue == major && beacon.minor.unsignedShortValue == minor
 }
 
-class ViewController: UIViewController, ESTBeaconManagerDelegate {
+class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDelegate {
 
+    // beacon
     let beaconManager = ESTBeaconManager()
-
     let beaconRegion1 = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: BEACON_1_UUID), major: BEACON_1_MAJOR, minor: BEACON_1_MINOR, identifier: "beaconRegion1")
-    let beaconRegion2 = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: BEACON_2_UUID), major: BEACON_2_MAJOR, minor: BEACON_2_MINOR, identifier: "beaconRegion2")
-
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-
+    
+    // webview
+    var webView: UIWebView = UIWebView()
+    var beaconActive:Bool = false
+    var currentURL:String = ""
+    
+    // constants
+    var URL_NO_BEACON: String = URL_BASE + "#top"
+    var URL_ACTIVE_BEACON: String = URL_BASE + "#top?isPerformer=true"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // beacon
         self.beaconManager.delegate = self
         self.beaconManager.returnAllRangedBeaconsAtOnce = true
-
         self.beaconManager.requestWhenInUseAuthorization()
+        
+        // initialize webview
+        let selfFrame: CGRect = self.view.frame
+        self.webView.frame = view.bounds
+        self.webView.delegate = self
+        self.view.addSubview(self.webView)
+        
+        // set default page
+        self.openWebView(self.URL_NO_BEACON)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         self.beaconManager.startRangingBeaconsInRegion(self.beaconRegion1)
-        self.beaconManager.startRangingBeaconsInRegion(self.beaconRegion2)
     }
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
 
         self.beaconManager.stopRangingBeaconsInRegion(self.beaconRegion1)
-        self.beaconManager.stopRangingBeaconsInRegion(self.beaconRegion2)
     }
 
     func beaconManager(manager: AnyObject!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        if let currentURL = self.webView.request?.URL?.absoluteString {
+            if currentURL != "" && currentURL.rangeOfString("#top") == nil {
+//                println("break watching currentURL: " + currentURL)
+                return
+            }
+        }
         if let neareastBeacon = beacons.first as? CLBeacon {
             if isBeacon(neareastBeacon, withUUID: BEACON_1_UUID, major: BEACON_1_MAJOR, minor: BEACON_1_MINOR) {
-                // beacon #1
-                self.label.text = "You're near beacon #1"
-                self.imageView.image = UIImage(named: "Beacon1")
-            } else if isBeacon(neareastBeacon, withUUID: BEACON_2_UUID, major: BEACON_2_MAJOR, minor: BEACON_2_MINOR) {
-                // beacon #2
-                self.label.text = "You're near beacon #2"
-                self.imageView.image = UIImage(named: "Beacon2")
+                // move to webview
+                if !self.beaconActive {
+                    self.openWebView(self.URL_ACTIVE_BEACON + "&major=" + String(BEACON_1_MAJOR) + "&minor=" + String(BEACON_1_MINOR))
+                    self.beaconActive = true
+                }
             }
         } else {
-            // no beacons found
-            self.label.text = "There are no beacons nearby"
-            self.imageView.image = UIImage(named: "NoBeacons")
+            // no beacons found, show error page
+            if self.beaconActive {
+                self.openWebView(self.URL_NO_BEACON)
+                self.beaconActive = false
+            }
         }
     }
 
@@ -77,10 +98,21 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate {
     func beaconManager(manager: AnyObject!, rangingBeaconsDidFailForRegion region: CLBeaconRegion!, withError error: NSError!) {
         NSLog("Ranging beacons failed for region '%@'\n\nMake sure that Bluetooth and Location Services are on, and that Location Services are allowed for this app. Also note that iOS simulator doesn't support Bluetooth.\n\nThe error was: %@", region.identifier, error);
     }
-
+    
+    func openWebView(url: String){
+        let requestURL: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
+        self.currentURL = url
+        self.webView.loadRequest(requestURL)
+        println("load: " + url)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
 
