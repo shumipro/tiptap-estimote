@@ -67,7 +67,8 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
 
     func beaconManager(manager: AnyObject!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         if let currentURL = self.webView.request?.URL?.absoluteString {
-            if currentURL != "" && currentURL.rangeOfString("#top") == nil {
+//            if currentURL != "" && currentURL.rangeOfString("#top") == nil {
+              if currentURL != ""  {
 //                println("break watching currentURL: " + currentURL)
                 return
             }
@@ -120,7 +121,8 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate, UIWebViewDeleg
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.LinkClicked {
+//        if navigationType == UIWebViewNavigationType.LinkClicked {
+        if navigationType == UIWebViewNavigationType.Other {
             println(request.URL?.host)
             if request.URL?.host! == "www.sandbox.paypal.com" {
                 self.openSafari(request.URL!)

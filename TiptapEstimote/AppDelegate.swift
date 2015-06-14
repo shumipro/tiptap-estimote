@@ -61,8 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
             // tiptap:// -> 9
             var redirectURL = (fullPath as NSString).substringFromIndex(9)
             println("custom scheme redirect: " + redirectURL)
-            self.viewController?.loadWebView(redirectURL)
-            
+            self.viewController?.loadWebView("https://" + redirectURL)
         }
         return true
     }
